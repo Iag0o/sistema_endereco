@@ -1,10 +1,10 @@
 <?php
 
-$hostname = "localost";
+$hostname = "localhost";
 $username = "root";
 $password = "";
-$database = "sistema_enreco";
+$database = "sistema_endereço";
 
-$conexao = mysqli_connect($hostname,$username,$password,$database)
+$conexao = mysqli_connect($hostname, $username, $password, $database)
 
 ?>

@@ -1,10 +1,10 @@
 <?php
 include "./api.php";
-// $endereco =  buscarCEP("69905232");
+// $endereco = buscarCEP("69905232");
 
-// echo "<pre>";
-// print_r($endereco);
-// echo "<pre>";
+//echo "<pre>";
+//print_r($endereco);
+//echo "<pre>"
 
 if(isset($_GET['cep'])) {
     $cep = $_GET['cep'];
@@ -13,28 +13,33 @@ if(isset($_GET['cep'])) {
 
 ?>
 
-<form method="GET">
-    <imput
-        type="text"
-        placeholder="buscar cep..."
-        name="cep"
+<form method = "GET">
+    <input
+    type="text"
+    placeholder="buscar cep..."
+    name = "cep"
     >
-    <button>Buscar</button>    
+    <button>buscar</button>
 </form>
 <?php if (isset($endereco['cep'])): ?>
 <div>
     <h2>CEP encontrado</h2>
     <ul>
         <?php
-            foreach($endereco as $data => $valor) {
-                if(strlen($valor) > 0 ) {
-                echo "$data: $valor <br>";
-            } 
+        foreach($endereco  as $data => $valor) {
+            echo "$data: $valor <br>";
         }
-        
-
         ?>
     </ul>
+    <form action="salvar.php" method="POST">
+        <input type="hidden"
+        name="cep"
+        value="<?php echo htmlspecialchars($_GET['cep'])?>">
+    <button>Salvar</button>
+</form>
 </div>
-<?php endif;
+<?php elseif(isset($endereco['erro'])):?>
+    <h2>CEP não encontrado</h2>
+    <p>O cep ditado pelo usuario não existe</p>
+<?php endif;?>
 
